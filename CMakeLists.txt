@@ -153,6 +153,13 @@ list(APPEND NNGUI_BASIC_SOURCE
      sdlgui/window.cpp
      sdlgui/nanovg.c
 )
+
+# Build library
+add_library(nanogui_sdl ${NNGUI_EXTRA_SOURCE} ${NNGUI_BASIC_SOURCE} )
+set_target_properties(
+    nanogui_sdl PROPERTIES
+    VS_DEBUGGER_WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}/build/debug")
+target_link_libraries(nanogui_sdl ${NNGUI_EXTRA_LIBS} ${SDL2_LIBRARY} ${SDL2IMAGE_LIBRARY} ${SDL2TTF_LIBRARY})
      
 option(NANOGUI_BUILD_EXAMPLE "Build example application" ON)
 if (NANOGUI_BUILD_EXAMPLE)
